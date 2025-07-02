@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+       
+      align-items: center;
+      height: 100vh;
+      /*background-image: url('travel.jpg')*/
+    }
+
+    #bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+
+    .login-container {
+      background-color:transparent;
+      backdrop-filter:blur(20px) ;
+      
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 16px rgba(6, 108, 216, 0.577);
+      width: 100%;
+      max-width: 400px;
+      
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #007bff;
+    }
+
+    
+    /* From Uiverse.io by gharsh11032000 */ 
+.button {
+  position: relative;
+  width: 120px;
+  text-align: center;
+  height: 40px;
+  background-color: #000;
+  display: flex;
+ 
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -4px;
+  top: -1px;
+  margin: auto;
+  width: 128px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #f10de2 0%, #40c9ff 100% );
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.button::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.button:hover::after {
+  filter: blur(30px);
+}
+
+.button:hover::before {
+  transform: rotate(-180deg);
+}
+
+.button:active::before {
+  scale: 0.7;
+}
+
+
+    .footer-text {
+      text-align: center;
+      margin-top: 15px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* From Uiverse.io by MuhammadHasann */ 
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="sample.mp4" type="video/mp4">
+  </video>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password" />
+      </div>
+      
+      <div >
+      <button type="submit" class="button">Login</button>
+      </div>
+
+      <div class="footer-text">
+        Don't have an account? <a href="exam.php">Sign up</a>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
