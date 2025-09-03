@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Portal | PixelMuse</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: #0a192f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .admin-container {
+      display: flex;
+      justify-content: center;
+      width: 95%;
+      max-width: 900px;
+    }
+
+    .admin-login-card {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 35px rgba(0, 153, 255, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .admin-login-card:hover {
+      transform: scale(1.02);
+    }
+
+    .admin-login-card video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.6);
+    }
+
+    .admin-login-container {
+      background-color: rgba(10, 25, 47, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 40px 30px;
+      border-radius: 15px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      border: 1px solid rgba(100, 200, 255, 0.1);
+    }
+
+    .admin-login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #64ffda;
+      font-size: 2em;
+      letter-spacing: 1px;
+    }
+
+    .admin-logo {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+      color: #64ffda;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ccd6f6;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(100, 200, 255, 0.05);
+      border: 1px solid rgba(100, 200, 255, 0.1);
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.3s;
+      color: #e6f1ff;
+      font-size: 16px;
+    }
+
+    .form-group input:focus {
+      border-color: #64ffda;
+      box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+    }
+
+    .admin-button {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      background-color: #0a192f;
+      color: #64ffda;
+      border: 1px solid #64ffda;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+
+    .admin-button:hover {
+      background-color: rgba(100, 255, 218, 0.1);
+      box-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+    }
+
+    .admin-button:active {
+      transform: scale(0.98);
+    }
+
+    .security-note {
+      text-align: center;
+      margin-top: 25px;
+      color: #8892b0;
+      font-size: 12px;
+      border-top: 1px solid rgba(100, 200, 255, 0.1);
+      padding-top: 15px;
+    }
+
+    .security-note i {
+      color: #64ffda;
+      margin-right: 5px;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 38px;
+      cursor: pointer;
+      color: #64ffda;
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="admin-container">
+    <div class="admin-login-card">
+      <video autoplay muted loop playsinline>
+        <source src="admin-bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="admin-login-container">
+        <div class="admin-logo">PIXELMUSE ADMIN</div>
+        <h2>Secure Portal Access</h2>
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label for="admin-email">ADMIN ID</label>
+            <input type="text" id="admin-email" name="admin-email" required placeholder="Enter admin ID" />
+            <div class="error-message" id="email-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="admin-password">SECURE KEY</label>
+            <input type="password" id="admin-password" name="admin-password" required placeholder="Enter secure key" />
+            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            <div class="error-message" id="password-error"></div>
+          </div>
+          <button type="submit" class="admin-button" id="loginButton">AUTHENTICATE</button>
+          
+          <div class="security-note">
+            <i class="fas fa-shield-alt"></i> Restricted access - authorized personnel only
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('adminLoginForm');
+      const loginButton = document.getElementById('loginButton');
+      const togglePassword = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('admin-password');
+      
+      // Toggle password visibility
+      togglePassword.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+      });
+      
+      // Form submission
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Reset errors
+        document.querySelectorAll('.error-message').forEach(el => {
+          el.style.display = 'none';
+          el.textContent = '';
+        });
+        
+        // Get form data
+        const formData = new FormData(this);
+        const email = formData.get('admin-email').trim();
+        const password = formData.get('admin-password').trim();
+        
+        // Simple validation
+        let isValid = true;
+        
+        if (!email) {
+          document.getElementById('email-error').textContent = 'Admin ID is required';
+          document.getElementById('email-error').style.display = 'block';
+          isValid = false;
+        }
+        
+        if (!password) {
+          document.getElementById('password-error').textContent = 'Secure key is required';
+          document.getElementById('password-error').style.display = 'block';
+          isValid = false;
+        }
+        
+        if (!isValid) return;
+        
+        // Disable button during request
+        loginButton.disabled = true;
+        loginButton.textContent = 'AUTHENTICATING...';
+        
+        try {
+          const response = await fetch('../BackEnd/AdminLogin.php', {
+            method: 'POST',
+            body: formData
+          });
+          
+          const data = await response.json();
+          
+          if (data.status === 'success') {
+            // Successful login - redirect
+            window.location.href = data.redirect;
+          } else {
+            // Show error message
+            document.getElementById('password-error').textContent = data.message || 'Invalid credentials';
+            document.getElementById('password-error').style.display = 'block';
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          document.getElementById('password-error').textContent = 'An error occurred. Please try again.';
+          document.getElementById('password-error').style.display = 'block';
+        } finally {
+          // Re-enable button
+          loginButton.disabled = false;
+          loginButton.textContent = 'AUTHENTICATE';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
